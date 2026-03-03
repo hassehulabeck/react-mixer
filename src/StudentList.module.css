@@ -4,3 +4,9 @@ h1 {
 h1:hover {
     color: blueviolet;
 }
+.underl {
+    text-decoration: underline;
+}
+.fat {
+    font-weight: 800;
+}
