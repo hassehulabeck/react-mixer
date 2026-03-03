@@ -1,0 +1,6 @@
+h1 {
+    color: silver;
+}
+h1:hover {
+    color: blueviolet;
+}
