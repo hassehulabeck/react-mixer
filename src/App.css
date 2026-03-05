@@ -65,10 +65,10 @@
   background-color: beige;
   border-radius: .5rem;
   color: darkslategray;
-  padding: 0.2rem 3rem 0.2rem 1rem;
+  padding: .3rem .6rem;
   flex: 1 1 23%;
   max-width: 20%;
-  min-width: 15%;
+  min-width: 10%;
   font-size: .75rem;
 }
 .person p {

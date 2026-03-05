@@ -1,7 +1,6 @@
-export function Person({firstname, lastname, isPresent = true}) {
+export function Person({firstname, lastname, isPresent = true, onClick}) {
     return (
-        <article className="person">
-            <p>{ isPresent ? 'present' : 'not present' }</p>
+        <article className="person" onClick={onClick}>
             <h2>{ firstname }<span> { lastname }</span></h2>
         </article>
     )

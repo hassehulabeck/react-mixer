@@ -4,8 +4,7 @@ export function StudentList({children}) {
     return (
         <div className="studentList">
             <h1 className={styles.h1}>Studentlist</h1>
-            <div className="border-8">
-                <p className={ [styles.underl, styles.fat].join(" ") }>Hello</p>
+            <div>
                 { children }
             </div>
         </div>

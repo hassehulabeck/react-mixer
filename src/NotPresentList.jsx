@@ -6,10 +6,13 @@ export function NotPresentList({ children}) {
         overflow: "auto",
         backgroundColor:"darksalmon",
     }
+    const flexing = {
+        display: "flex",
+    }
     return (
         <div style={styling}>
             <h1>Not present</h1>
-            <div>
+            <div style={flexing}>
                 { children }
             </div>
         </div>
