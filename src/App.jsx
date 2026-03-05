@@ -20,7 +20,7 @@ function App() {
           <Person firstname="Hans" lastname="Andersson" isPresent={false} />
         </StudentList>
         <NotPresentList></NotPresentList>
-        <MixedList bg="darkblue"></MixedList>
+        <MixedList bg="hotpink"></MixedList>
       </section>
     </>
   )
