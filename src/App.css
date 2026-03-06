@@ -71,6 +71,10 @@
   min-width: 10%;
   font-size: .75rem;
 }
+.person:hover {
+  cursor: pointer;
+  background-color: rgb(216, 216, 181);
+}
 .person p {
   margin-bottom: 0;
   text-align: left;

@@ -8,6 +8,7 @@ export function NotPresentList({ children}) {
     }
     const flexing = {
         display: "flex",
+        padding: "1rem"
     }
     return (
         <div style={styling}>

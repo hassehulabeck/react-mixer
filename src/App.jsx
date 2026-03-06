@@ -19,7 +19,7 @@ function App() {
 
   // A function to handle the toggle of present/absent (not present)
   function togglePresent(id) {
-    console.log("Click")
+    console.log(id)
     const updatedStudents = students.map((student) => {
       if (student.id === id) {
         // In the object below, first place the object, then the properties that you will change
@@ -38,14 +38,14 @@ function App() {
         <StudentList>
           {
             present.map(student => (
-              <Person key={student.id} {...student} onClick={() => togglePresent(student.id)} />
+              <Person key={student.id} {...student} onClickHandler={() => togglePresent(student.id)} />
             ))
           }
         </StudentList>
         <NotPresentList>
                     {
             absent.map(student => (
-              <Person key={student.id} {...student} onClick={() => togglePresent(student.id)} />
+              <Person key={student.id} {...student} onClickHandler={() => togglePresent(student.id)} />
             ))
           }
 
