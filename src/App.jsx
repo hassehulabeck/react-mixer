@@ -3,6 +3,7 @@ import { Person } from './Person'
 import { StudentList } from './StudentList'
 import { NotPresentList } from './NotPresentList'
 import { MixedList } from './MixedList'
+import { BadCounter } from './BadCounter'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <>
+      <BadCounter></BadCounter>
       <section className="layout">
         <StudentList>
           <Person {...person} />
