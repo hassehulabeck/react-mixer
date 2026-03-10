@@ -9,23 +9,33 @@ function App() {
 
   // Our data
   const [students, setStudents] = useState(null)
-
-
-  // Fetch data on component load
-  useEffect(() => {
-    const fetchData = async () => {
-      await fetch('./src/data/students.json')
-        .then ((response) => response.json())
-        .then ((json) => {
-          setStudents(json.students)
-        })
-    }
-    fetchData()
-  }, [])
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(null)
 
   // derived state = filter/calculate which of the students fit in either group.
   const present = students?.filter(student => student.isPresent)
   const absent = students?.filter(student => !student.isPresent)
+
+  const fetchData = () => {
+    fetch('./src/data/students.json')
+      .then ((response) => response.json())
+      .then ((json) => {
+        setStudents(json.students)
+      })
+      .catch(error => {
+        console.error("Failure")
+        setError("Could not load students data.")
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+  }
+  // Fetch data on component load
+  useEffect(() => {
+    setLoading(true)
+    fetchData()
+  }, [])
+
 
   // A function to handle the toggle of present/absent (not present)
   function togglePresent(id) {
@@ -46,7 +56,9 @@ function App() {
     <>
       <section className="layout">
         <StudentList>
-          {
+          {loading && <p>Loading...</p>}
+          {!loading && error && <p>{error}</p>}
+          {!loading && !error && 
             present?.map(student => (
               <Person key={student.id} {...student} onClickHandler={() => togglePresent(student.id)} />
             ))
