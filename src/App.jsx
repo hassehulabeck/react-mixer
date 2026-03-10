@@ -3,19 +3,29 @@ import { Person } from './Person'
 import { StudentList } from './StudentList'
 import { NotPresentList } from './NotPresentList'
 import { MixedList } from './MixedList'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function App() {
 
   // Our data
-  const [students, setStudents] = useState([
-    { id: 1, firstname: "Rune", lastname: "Panda", isPresent: true, groupId: null },
-    { id: 2, firstname: "Volmar", lastname: "Yxkull", isPresent: false, groupId: null },
-  ])
+  const [students, setStudents] = useState(null)
+
+
+  // Fetch data on component load
+  useEffect(() => {
+    const fetchData = async () => {
+      await fetch('./src/data/students.json')
+        .then ((response) => response.json())
+        .then ((json) => {
+          setStudents(json.students)
+        })
+    }
+    fetchData()
+  }, [])
 
   // derived state = filter/calculate which of the students fit in either group.
-  const present = students.filter(student => student.isPresent)
-  const absent = students.filter(student => !student.isPresent)
+  const present = students?.filter(student => student.isPresent)
+  const absent = students?.filter(student => !student.isPresent)
 
   // A function to handle the toggle of present/absent (not present)
   function togglePresent(id) {
@@ -37,14 +47,14 @@ function App() {
       <section className="layout">
         <StudentList>
           {
-            present.map(student => (
+            present?.map(student => (
               <Person key={student.id} {...student} onClickHandler={() => togglePresent(student.id)} />
             ))
           }
         </StudentList>
         <NotPresentList>
                     {
-            absent.map(student => (
+            absent?.map(student => (
               <Person key={student.id} {...student} onClickHandler={() => togglePresent(student.id)} />
             ))
           }
