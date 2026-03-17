@@ -2,7 +2,7 @@ export function NotPresentList({ children}) {
 
     const styling = {
         gridColumn: 1,
-        gridRow: 2,                /* bottom-left */
+        gridRow: 3,                /* bottom-left */
         overflow: "auto",
         backgroundColor:"darksalmon",
     }

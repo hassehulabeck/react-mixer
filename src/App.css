@@ -18,22 +18,28 @@
   grid-template-columns: 67% 33%;
 
   /* 2 rows on the left: top takes remaining space, bottom is 25% */
-  grid-template-rows: 1fr 25%;
+  grid-template-rows: 1fr 50% 35%;
 
   gap: 1rem;                  /* optional spacing */
   box-sizing: border-box;
   padding: 1rem;              /* optional */
 }
 
+
+
 .studentList, .notPresentList, .mixedList {
   border-radius: 1rem;
 }
 
+.buttons {
+  grid-row: 1;
+  grid-column: 1;
+}
 
 /* 2) Place the areas */
 .studentList {
   grid-column: 1;
-  grid-row: 1;                /* top-left */
+  grid-row: 2;                /* top-left */
   background-color:cadetblue
 }
 
@@ -45,21 +51,6 @@
   overflow: auto;             /* if lots of people */
   margin: 1rem;
 }
-
-.notPresentList {
-  grid-column: 1;
-  grid-row: 2;                /* bottom-left */
-  overflow: auto;
-  background-color:darksalmon;
-}
-
-.mixedList {
-  grid-column: 2;
-  grid-row: 1 / span 2;       /* right side spans both rows */
-  overflow: auto;
-  background-color: tomato;
-}
-
 .person {
   border: thin solid palevioletred;
   background-color: beige;
