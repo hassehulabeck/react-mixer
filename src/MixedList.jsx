@@ -26,11 +26,11 @@ const GroupBlock = styled.div`
     border: 1px solid rgba(0,0,0,0.1);
     border-radius: 8px;
 
-    &:nth-child(odd) {
+    &:nth-of-type(odd) {
         background: rgba(255,255,255,0.2);
     }
 
-    &:nth-child(even) {
+    &:nth-of-type(even) {
         background: rgba(0,0,0,0.1);
     }
 

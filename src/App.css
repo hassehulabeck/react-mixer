@@ -7,6 +7,10 @@
   background-color: lightblue;
   display: flex;
 }
+body.dark .layout{
+  background-color: black;
+  color: white;
+}
 
 /* 1) Section fills the viewport */
 .layout {

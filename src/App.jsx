@@ -8,12 +8,22 @@ import { useStudents } from './hooks/useStudents'
 
 function App() {
 
-  const { present, absent, loading, error, groups, togglePresent, mixStudents } = useStudents()
+  const { 
+    present, 
+    absent, 
+    loading, 
+    error, 
+    groups, 
+    togglePresent, 
+    mixStudents, 
+    toggleDarkMode 
+  } = useStudents()
 
   return (
     <section className="layout">
       <section className="buttons">
         <button onClick={mixStudents}>Mix!</button>
+        <button onClick={toggleDarkMode}>Dark/Light mode</button>
       </section>
       <StudentList>
         {loading && <p>Loading...</p>}

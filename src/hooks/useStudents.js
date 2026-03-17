@@ -1,88 +1,107 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo, useRef } from "react"
 
 export function useStudents() {
     
+    // Our data
+    const [students, setStudents] = useState(null)
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
+    const [mixedStudents, setMixedStudents] = useState([])
 
-// Our data
-  const [students, setStudents] = useState(null)
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState(null)
+    // Darkmode is pure DOM manipulation - useRef is good for that
+    const isDark = useRef(false)
 
-  const [mixedStudents, setMixedStudents] = useState([])
+    const present = students?.filter(student => student.isPresent)
 
-  const present = students?.filter(student => student.isPresent)
-  const absent = students?.filter(student => !student.isPresent)
+    // For educational purposes - here's useMemo
+    const absent = useMemo(() => {
+    students?.filter(student => !student.isPresent)
+    }, [students])
 
-  const fetchData = () => {
+    const fetchData = () => {
     fetch('./src/data/students.json')
-      .then ((response) => response.json())
-      .then ((json) => {
+        .then ((response) => response.json())
+        .then ((json) => {
         setStudents(json.students)
-      })
-      .catch(error => {
+        })
+        .catch(error => {
         console.error("Failure")
         setError("Could not load students data.")
-      })
-      .finally(() => {
+        })
+        .finally(() => {
         setLoading(false)
-      })
-  }
-  // Fetch data on component load
-  useEffect(() => {
+        })
+    }
+    // Fetch data on component load
+    useEffect(() => {
     setLoading(true)
     fetchData()
-  }, [])
+    }, [])
 
 
-  const groups = mixedStudents.reduce((acc, student) => {
-    const key = student.groupId
-    if (!acc[key]) acc[key] = []
-    acc[key].push(student)
-    return acc
-  }, {})
+    const groups = mixedStudents.reduce((acc, student) => {
+        const key = student.groupId
+        if (!acc[key]) acc[key] = []
+        acc[key].push(student)
+        return acc
+    }, {})
 
-  function togglePresent(id) {
-    const updatedStudents = students.map((student) => {
-      if (student.id === id) {
-        return { ...student, isPresent: !student.isPresent }
-      }
-      return student
-    })
-    setStudents(updatedStudents);
-  }
-
-  function mixStudents() {
-    // Fisher-Yates shuffle
-    const shuffled = [...present]
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+    function togglePresent(id) {
+        const updatedStudents = students.map((student) => {
+            if (student.id === id) {
+            return { ...student, isPresent: !student.isPresent }
+            }
+            return student
+        })
+        setStudents(updatedStudents);
     }
 
-    // If odd number, the last group gets 3 instead of 2
-    const isOdd = shuffled.length % 2 !== 0
-    const groups = []
-    let i = 0
-    let groupId = 1
+    function mixStudents() {
+        // Fisher-Yates shuffle
+        const shuffled = [...present]
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]]
+        }
 
-    while (i < shuffled.length) {
-      // If this is the last 3 students and total is odd, group them together
-      const isLastThree = isOdd && i === shuffled.length - 3
-      const size = isLastThree ? 3 : 2
+        // If odd number, the last group gets 3 instead of 2
+        const isOdd = shuffled.length % 2 !== 0
+        const groups = []
+        let i = 0
+        let groupId = 1
 
-      const group = shuffled.slice(i, i + size).map(student => ({
-        ...student,
-        groupId
-      }))
+        while (i < shuffled.length) {
+            // If this is the last 3 students and total is odd, group them together
+            const isLastThree = isOdd && i === shuffled.length - 3
+            const size = isLastThree ? 3 : 2
 
-      groups.push(...group)
-      i += size
-      groupId++
+            const group = shuffled.slice(i, i + size).map(student => ({
+            ...student,
+            groupId
+            }))
+
+            groups.push(...group)
+            i += size
+            groupId++
+        }
+
+        setMixedStudents(groups)
+        setStudents(prev => prev.filter(student => !student.isPresent))
     }
 
-    setMixedStudents(groups)
-    setStudents(prev => prev.filter(student => !student.isPresent))
-  }
+    function toggleDarkMode() {
+        isDark.current = !isDark.current
+        document.body.classList.toggle('dark', isDark.current)
+    }
 
-  return { present, absent, loading, error, groups, togglePresent, mixStudents }
+    return { 
+        present, 
+        absent, 
+        loading, 
+        error, 
+        groups, 
+        togglePresent, 
+        mixStudents, 
+        toggleDarkMode 
+    }
 }
