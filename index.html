@@ -6,8 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="color-scheme">
     <title>26-course</title>
+    <style>
+      #initial-loader {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        font-family: sans-serif;
+        font-size: 2rem;
+      }
+    </style>
   </head>
   <body class="x y">
+    <div id="initial-loader">
+      <img src="src/assets/infinite-spinner-coop.svg" alt="loading..." />
+    </div>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
