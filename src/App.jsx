@@ -5,7 +5,6 @@ import { StudentList } from './StudentList'
 import { NotPresentList } from './NotPresentList'
 import { MixedList } from './MixedList'
 import { useStudents } from './hooks/useStudents'
-import loadingSpinner from './assets/infinite-spinner-coop.svg'
 
 function App() {
 
@@ -27,7 +26,7 @@ function App() {
         <button onClick={toggleDarkMode}>Dark/Light mode</button>
       </section>
       <StudentList>
-        {loading && <img src={loadingSpinner} alt="loading..." />}
+        {loading && "loading..."}
         {!loading && error && <p>{error}</p>}
         {!loading && !error && 
           present?.map(student => (
