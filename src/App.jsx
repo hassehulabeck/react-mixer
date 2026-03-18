@@ -5,6 +5,8 @@ import { StudentList } from './StudentList'
 import { NotPresentList } from './NotPresentList'
 import { MixedList } from './MixedList'
 import { useStudents } from './hooks/useStudents'
+import { InputForm } from './InputForm'
+
 
 function App() {
 
@@ -24,6 +26,7 @@ function App() {
       <section className="buttons">
         <button onClick={mixStudents}>Mix!</button>
         <button onClick={toggleDarkMode}>Dark/Light mode</button>
+        <InputForm onAdd={}/>
       </section>
       <StudentList>
         {loading && "loading..."}
