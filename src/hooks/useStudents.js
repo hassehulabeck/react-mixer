@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useRef } from "react"
+import { useState, useEffect, useMemo } from "react"
 
 export function useStudents() {
     
@@ -13,7 +13,7 @@ export function useStudents() {
 
     // For educational purposes - here's useMemo
     const absent = useMemo(() => {
-    students?.filter(student => !student.isPresent)
+        return students?.filter(student => !student.isPresent)
     }, [students])
 
     const fetchData = () => {
