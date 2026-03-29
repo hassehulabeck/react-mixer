@@ -34,8 +34,8 @@ export function useStudents() {
     }
     // Fetch data on component load
     useEffect(() => {
-    setLoading(true)
-    fetchData()
+        setLoading(true)
+        fetchData()
     }, [])
 
 
@@ -89,10 +89,17 @@ export function useStudents() {
         setStudents(prev => prev.filter(student => !student.isPresent))
     }
 
-    function toggleDarkMode() {
-        isDark.current = !isDark.current
-        document.body.classList.toggle('dark', isDark.current)
-    }
+    function addStudent(firstname, lastname) {
+        const newStudent = {
+            id: students.length + 1,
+            firstname: firstname,
+            lastname: lastname,
+            isPresent: true, 
+            groupId: null     
+        }
+        setStudents(prev => [...prev, newStudent])
+  }
+
 
     return { 
         present, 
@@ -102,6 +109,7 @@ export function useStudents() {
         groups, 
         togglePresent, 
         mixStudents, 
-        toggleDarkMode 
+        toggleDarkMode, 
+        addStudent 
     }
 }

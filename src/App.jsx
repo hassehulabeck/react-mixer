@@ -18,15 +18,22 @@ function App() {
     groups, 
     togglePresent, 
     mixStudents, 
-    toggleDarkMode 
+    toggleDarkMode,
+    addStudent 
   } = useStudents()
+
+  function toggleDarkMode() {
+    isDark.current = !isDark.current
+    document.body.classList.toggle('dark', isDark.current)
+  }
+
 
   return (
     <section className="layout">
       <section className="buttons">
         <button onClick={mixStudents}>Mix!</button>
         <button onClick={toggleDarkMode}>Dark/Light mode</button>
-        <InputForm onAdd={}/>
+        <InputForm onAdd={addStudent} />
       </section>
       <StudentList>
         {loading && "loading..."}

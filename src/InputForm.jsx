@@ -8,8 +8,8 @@ export function InputForm({ onAdd }) {
     function handleSubmit(e) {
         // No reload of page
         e.preventDefault()
-        const firstname = inputRef.current.value.trim()
-        const lastname = inputRef.current.value.trim()
+        const firstname = firstNameRef.current.value.trim()
+        const lastname = lastNameRef.current.value.trim()
 
         if (!firstname || !lastname) {
             setError("Please enter a name")
