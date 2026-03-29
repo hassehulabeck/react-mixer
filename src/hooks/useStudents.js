@@ -17,7 +17,7 @@ export function useStudents() {
     }, [students])
 
     const fetchData = () => {
-    fetch('./src/data/students.json')
+    fetch('./public/data/students.json')
         .then ((response) => response.json())
         .then ((json) => {
         setStudents(json.students)
