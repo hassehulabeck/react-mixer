@@ -1,0 +1,40 @@
+{
+    "students": 
+    [
+        { 
+            "id": 1, 
+            "firstname": "Rune", 
+            "lastname": "Panda", 
+            "isPresent": true, 
+            "groupId": null 
+        },
+        { 
+            "id": 2, 
+            "firstname": "Volmar", 
+            "lastname": "Yxkull", 
+            "isPresent": true, 
+            "groupId": null 
+        },
+                { 
+            "id": 4, 
+            "firstname": "Ann", 
+            "lastname": "di Find", 
+            "isPresent": true, 
+            "groupId": null 
+        },
+                { 
+            "id": 5, 
+            "firstname": "Pedro", 
+            "lastname": "Pascal", 
+            "isPresent": true, 
+            "groupId": null 
+        },
+                { 
+            "id": 22, 
+            "firstname": "Hildegard", 
+            "lastname": "av Bingen", 
+            "isPresent": true, 
+            "groupId": null 
+        }
+    ]
+}
