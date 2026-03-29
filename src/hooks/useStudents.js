@@ -8,8 +8,6 @@ export function useStudents() {
     const [error, setError] = useState(null)
     const [mixedStudents, setMixedStudents] = useState([])
 
-    // Darkmode is pure DOM manipulation - useRef is good for that
-    const isDark = useRef(false)
 
     const present = students?.filter(student => student.isPresent)
 
@@ -109,7 +107,6 @@ export function useStudents() {
         groups, 
         togglePresent, 
         mixStudents, 
-        toggleDarkMode, 
         addStudent 
     }
 }

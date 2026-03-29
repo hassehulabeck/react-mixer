@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import './App.css'
 import { Person } from './Person'
 import { StudentList } from './StudentList'
@@ -10,6 +10,10 @@ import { InputForm } from './InputForm'
 
 function App() {
 
+
+    // Darkmode is pure DOM manipulation - useRef is good for that
+    const isDark = useRef(false)
+
   const { 
     present, 
     absent, 
@@ -17,8 +21,7 @@ function App() {
     error, 
     groups, 
     togglePresent, 
-    mixStudents, 
-    toggleDarkMode,
+    mixStudents,
     addStudent 
   } = useStudents()
 
